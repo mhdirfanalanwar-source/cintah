@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 🌷</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffe6f2, #fff7fb, #ffd9ec);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Halaman awal */
+    .awal {
+        text-align: center;
+        animation: muncul 1s ease;
+    }
+
+    .awal h1 {
+        color: #ff4f91;
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    button {
+        border: none;
+        padding: 18px 35px;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #ff4f91, #ff78aa);
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(255, 79, 145, 0.35);
+        transition: 0.25s;
+    }
+
+    button:hover {
+        transform: scale(1.08);
+    }
+
+    /* Halaman setelah tombol */
+    .hadiah {
+        display: none;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        animation: muncul 1s ease;
+    }
+
+    .hadiah h1 {
+        color: #ff4081;
+        font-size: 38px;
+        margin: 10px;
+        text-shadow: 0 3px 8px rgba(255, 64, 129, 0.2);
+    }
+
+    .hadiah p {
+        color: #d94b82;
+        font-size: 18px;
+    }
+
+    .buket {
+        font-size: 130px;
+        line-height: 1;
+        animation: goyang 2s infinite ease-in-out;
+        filter: drop-shadow(0 10px 10px rgba(0,0,0,.15));
+    }
+
+    .stiker {
+        font-size: 45px;
+        margin-top: 15px;
+    }
+
+    /* Love dan bunga terbang */
+    .terbang {
+        position: fixed;
+        bottom: -50px;
+        font-size: 25px;
+        pointer-events: none;
+        animation: terbang 5s linear forwards;
+        z-index: 5;
+    }
+
+    @keyframes terbang {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes goyang {
+        0%, 100% {
+            transform: rotate(-3deg);
+        }
+        50% {
+            transform: rotate(3deg) translateY(-8px);
+        }
+    }
+
+    @keyframes muncul {
+        from {
+            opacity: 0;
+            transform: scale(.7);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Tampilan awal -->
+<div class="awal" id="awal">
+    <h1>ada sesuatu buat kamu 👀</h1>
+    <button onclick="buka()">pencet cini 💗</button>
+</div>
+
+<!-- Tampilan hadiah -->
+<div class="hadiah" id="hadiah">
+    <div class="buket">💐</div>
+
+    <h1>i love you sayang 💗</h1>
+
+    <p>🌷🌸🌹 ini buat kamu 🌹🌸🌷</p>
+
+    <div class="stiker">
+        🌷 💕 🌸 💖 🌺
+    </div>
+</div>
+
+<script>
+function buka() {
+    document.getElementById("awal").style.display = "none";
+    document.getElementById("hadiah").style.display = "block";
+
+    // Bikin love dan bunga beterbangan
+    setInterval(() => {
+        const benda = document.createElement("div");
+        benda.classList.add("terbang");
+
+        const pilihan = ["❤️", "💕", "💗", "💖", "🌷", "🌸", "🌹", "🌺"];
+        benda.innerHTML = pilihan[Math.floor(Math.random() * pilihan.length)];
+
+        benda.style.left = Math.random() * 100 + "vw";
+        benda.style.fontSize = (20 + Math.random() * 30) + "px";
+        benda.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+        document.body.appendChild(benda);
+
+        setTimeout(() => {
+            benda.remove();
+        }, 7000);
+
+    }, 300);
+}
+</script>
+
+</body>
+</html>
